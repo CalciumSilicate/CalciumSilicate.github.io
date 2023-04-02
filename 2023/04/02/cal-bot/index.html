@@ -45,14 +45,12 @@
             <div id="loading" v-show="loading">
                 <div id="loading-circle">
                     <h2>LOADING</h2>
-                    <p>加载过慢请开启缓存&ensp;浏览器默认开启</p>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
                     <img src="/images/loading.gif" />
                 </div>
             </div>
             </transition>
-            <transition name="into">
-            <div id="main" v-show="!loading">
-                <nav id="menu" ref="menu">
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
     <div class="desktop-menu">
         <a class="title" href="/">
             <span>SATORI</span>
@@ -85,13 +83,13 @@
         
     </div>
     <div id="mobile-menu">
-        <div class="curtain" v-show="showMenu" @click="showMenu = !showMenu"></div>
-        <div class="title" @click="showMenu = !showMenu">
+        <div class="curtain" @click="shouMenuItems = !shouMenuItems" v-show="shouMenuItems"></div>
+        <div class="title" @click="shouMenuItems = !shouMenuItems">
             <i class="fa-solid fa-bars fa-fw"></i>
             <span>&emsp;SATORI</span>
         </div>
         <transition name="slide">
-        <div class="items" v-show="showMenu">
+        <div class="items" v-show="shouMenuItems">
             
             <a href="/">
                 <div class="item">
@@ -143,6 +141,8 @@
     </div>
 </nav>
 
+            <transition name="into">
+            <div id="main" v-show="!loading">
                 <div class="article">
     <div>
         <h1>Calcium bot 使用方法</h1>
