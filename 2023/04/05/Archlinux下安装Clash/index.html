@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Archives | Satori</title>
+        <title>Archlinux下安装Clash | Satori</title>
         <meta name="author" content="CalciumSilicate" />
         <meta name="description" content="扣1帮收里FD" />
         <meta name="keywords" content="" />
@@ -27,6 +27,10 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+
+
 
 
 
@@ -139,54 +143,71 @@
 
             <transition name="into">
             <div id="main" v-show="!loading">
-                
-<div id="archives">
-    
-    <div id="timeline-wrap" ref="timeline">
+                <div class="article">
+    <div>
+        <h1>Archlinux下安装Clash</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/4/5
+        </span>
         
-        <div class="timeline" data-title="calciumbot使用方法">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/4/2</div>
-                <a href="/2023/04/02/cal-bot/">
-                    <h3>Calcium bot 使用方法</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="测试">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/4/2</div>
-                <a href="/2023/04/02/Test/">
-                    <h3>测试</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="timeline" data-title="archlinux下安装clash">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2023/4/5</div>
-                <a href="/2023/04/05/Archlinux%E4%B8%8B%E5%AE%89%E8%A3%85Clash/">
-                    <h3>Archlinux下安装Clash</h3>
-                </a>
-                <div class="info">
-                    
-                    
-                </div>
-            </div>
-        </div>
         
     </div>
+    
+    <div class="content" v-pre>
+        <blockquote>
+<p>Clash 是由Go语言实现的跨平台代理工具</p>
+</blockquote>
+<p>官方: <a target="_blank" rel="noopener" href="https://github.com/Dreamacro/clash/">https://github.com/Dreamacro/clash/</a></p>
+<h1 id="安装-Clash"><a href="#安装-Clash" class="headerlink" title="安装 Clash"></a>安装 Clash</h1><p>Arch Linux下载linux-amd64即可</p>
+<pre><code class="shell">wget https://github.com/Dreamacro/clash/releases/download/v1.14.0/clash-linux-amd64-v1.14.0.gz
+gzip -d clash-linux-amd64-v1.14.0.gz
+</code></pre>
+<p>移动到 <code>/usr/local/bin</code> 目录并给予可执行权限</p>
+<pre><code class="shell">sudo mv clash-linux-amd64-v1.14.0 /usr/local/bin/clash
+sudo chmod +x /usr/local/bin/clash
+</code></pre>
+<h1 id="启动-Clash"><a href="#启动-Clash" class="headerlink" title="启动 Clash"></a>启动 Clash</h1><blockquote>
+<p>clash 启动后会在 ~&#x2F;.config&#x2F;clash 目录生成配置文件</p>
+</blockquote>
+<pre><code class="shell">clash
+</code></pre>
+<h1 id="远程管理"><a href="#远程管理" class="headerlink" title="远程管理"></a>远程管理</h1><pre><code class="shell">vim ~/.config/clash/config.yaml
+</code></pre>
+<pre><code>external-controller: &#39;127.0.0.1:9090&#39;
+</code></pre>
+<p>管理：<a target="_blank" rel="noopener" href="http://clash.razord.top/#/proxies">http://clash.razord.top/#/proxies</a></p>
+<h1 id="添加节点"><a href="#添加节点" class="headerlink" title="添加节点"></a>添加节点</h1><pre><code class="shell">cd ~/.config/clash
+
+# 备份
+mv config.yaml config.yaml.backup
+
+wget [订阅地址] -O config.yaml
+</code></pre>
+<h1 id="命令行代理"><a href="#命令行代理" class="headerlink" title="命令行代理"></a>命令行代理</h1><p>安装 proxychains</p>
+<pre><code class="shell">yay -S proxychains
+</code></pre>
+<p>修改配置文件</p>
+<pre><code class="shell">sudo vim /etc/proxychains.conf
+
+socks5  127.0.0.1 7891
+</code></pre>
+<p>使用</p>
+<pre><code class="shell">proxychains4 curl www.google.com
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
 </div>
 
                 <footer id="footer">
@@ -218,6 +239,12 @@
             
         </div>
         <script src="/js/main.js"></script>
+        
+        
+
+
+
+
         
     </body>
 </html>
